@@ -1,8 +1,8 @@
 package chess.pieces;
 
+import chess.State;
 import chess.board.Cell;
 import chess.board.Chessboard;
-import chess.State;
 
 public class King extends Chessman {
 

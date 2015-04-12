@@ -7,7 +7,7 @@ import chess.State;
 import chess.board.Cell;
 import chess.board.Chessboard;
 
-public class Chessman {
+public abstract class Chessman {
 
     protected Set<Cell> booked = new HashSet<>();
     protected Cell place = null;
@@ -39,12 +39,19 @@ public class Chessman {
         }
     }
 
-    public Cell chooseCell(Chessboard ch) {
+    public Cell chooseCell(Chessboard chessboard) {
+        for (Cell targetCell : chessboard.getFree()) {
+            if (!localPlaces.contains(targetCell)) {
+                localPlaces.add(targetCell);
+                return targetCell;
+            }
+        }
         return null;
     }
 
-    protected boolean fillBooked(Cell targetCell, Chessboard ch) {
-        return false;
+    protected boolean fillBooked(Cell targetCell, Chessboard chessboard) {
+        booked.retainAll(chessboard.getFree());
+        return true;
     }
 
 
