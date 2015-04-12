@@ -5,10 +5,7 @@ import chess.Player;
 import chess.State;
 import chess.board.Chessboard;
 import chess.board.ResultChessboard;
-import chess.pieces.Chessman;
-import chess.pieces.King;
-import chess.pieces.Knight;
-import chess.pieces.Rook;
+import chess.pieces.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -79,5 +76,30 @@ public class TestChessboard {
         Assert.assertTrue(player.getOptionsCount() == 384);
         Assert.assertTrue(player.getResultsCount() == 8);
     }
+    @Test
+    public void targetTest() {
+        System.out.println("-------------------------------------");
+        System.out.println("Target test on 7x7 board");
+        long start = System.currentTimeMillis();
+        Chessboard board = new Chessboard(7,7);
+        Player player = new Player();
+        List<Chessman> pieces = new ArrayList<>(8);
+        pieces.add(new Queen());
+        pieces.add(new Queen());
+        pieces.add(new King());
+        pieces.add(new King());
+        pieces.add(new Bishop());
+        pieces.add(new Bishop());
+        pieces.add(new Knight());
+        player.setChessboard(board);
+        player.setPieces(pieces);
+        player.findResults();
+        long end = System.currentTimeMillis();
+        System.out.println("It took "+ ((end - start)) / 1000d + " seconds to find results");
+        player.printResult();
+        System.out.println("-------------------------------------");
+
+    }
+
 
 }
