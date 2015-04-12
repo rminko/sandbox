@@ -55,7 +55,7 @@ public class TestChessboard {
     @Test
     public void testRooksAndKnights() {
         System.out.println("-------------------------------------");
-        System.out.println("Test two Knights and Rooks on 4x4 board");
+        System.out.println("Test 4 Knights and 2 Rooks on 4x4 board");
         Player player = new Player();
         Chessboard board = new Chessboard(4, 4);
         List<Chessman> pieces = new ArrayList<>(6);
