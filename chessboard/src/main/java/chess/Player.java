@@ -25,7 +25,15 @@ public class Player {
     }
 
     public void process(Integer level) {
-        //TODO: recursive search potions operation
+        Chessman piece = pieces.get(level);
+        while (piece.sit(chessboard)) {
+            if (pieces.size() == level + 1) {
+                optionsCount++;
+            } else {
+                process(level + 1);
+            }
+        }
+        piece.rid(chessboard);
     }
 
     public void findResults() {
