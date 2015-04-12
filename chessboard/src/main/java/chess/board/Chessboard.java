@@ -17,7 +17,12 @@ public class Chessboard {
     private Integer width;
 
     private Cell[][] cells;
+
+    // Set with cells, which currently is not occupied or threatened by any chessman
     private Set<Cell> free = new HashSet<Cell>();
+
+    // Places set will contains set of cells occupied by chessmen
+    private Set<Cell> places = new HashSet<Cell>();
 
     public Chessboard(Integer x, Integer y) {
         height = x;
@@ -32,10 +37,6 @@ public class Chessboard {
         }
     }
 
-    public void print() {
-        return;
-    }
-
     public void setCell(Integer x, Integer y, State state) {
         cells[x][y].setState(state);
         if (cells[x][y].isFree()) {
@@ -45,16 +46,24 @@ public class Chessboard {
         }
     }
 
-    public Boolean checkCellIsFree(Integer x, Integer y) {
-        return cells[x][y].isFree();
-    }
-
     public Set<Cell> getFree() {
         return free;
     }
 
+    public Set<Cell> getPlaces() {
+        return places;
+    }
+
     public Cell[][] getCells() {
         return cells;
+    }
+
+    public Boolean checkCellIsFree(Integer x, Integer y) {
+        return cells[x][y].isFree();
+    }
+
+    public void print() {
+        return;
     }
 
 }
