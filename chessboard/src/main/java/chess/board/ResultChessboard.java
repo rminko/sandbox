@@ -25,7 +25,7 @@ public class ResultChessboard {
         }
     }
 
-    public void setStateToCell(int x, int y, State state) {
+    public void setCellState(int x, int y, State state) {
         cells[x][y] = state;
     }
 
@@ -56,12 +56,20 @@ public class ResultChessboard {
             return false;
         }
 
-        return Arrays.equals(cells, that.cells);
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (cells[i][j] != that.cells[i][j]) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
 
     }
 
     @Override
     public int hashCode() {
-        return cells.hashCode();
+        return Arrays.deepHashCode(cells);
     }
 }

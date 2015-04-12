@@ -56,7 +56,7 @@ public class Player {
     public ResultChessboard generateBoardResult() {
         ResultChessboard result = new ResultChessboard(chessboard.getHeight(), chessboard.getWidth());
         for (Chessman piece : pieces) {
-            result.setStateToCell(piece.getPlace().getX(), piece.getPlace().getY(), piece.getType());
+            result.setCellState(piece.getPlace().getX(), piece.getPlace().getY(), piece.getType());
         }
         return result;
     }

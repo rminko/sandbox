@@ -2,7 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chess.Player;
+import chess.State;
 import chess.board.Chessboard;
+import chess.board.ResultChessboard;
 import chess.pieces.Chessman;
 import chess.pieces.King;
 import chess.pieces.Rook;
@@ -11,6 +13,25 @@ import org.junit.Test;
 
 
 public class TestChessboard {
+
+    @Test
+    public void testResultBoards () {
+        ResultChessboard board3x3v1 = new ResultChessboard(3,3);
+        ResultChessboard board3x3v2 = new ResultChessboard(3,3);
+        ResultChessboard board3x3v3 = new ResultChessboard(3,3);
+        ResultChessboard board4x3 = new ResultChessboard(4,3);
+        board3x3v3.setCellState(0,0, State.BOOKED);
+
+        Assert.assertTrue(board3x3v1.equals(board3x3v2));
+        Assert.assertTrue(board3x3v1.hashCode()== board3x3v2.hashCode());
+
+        Assert.assertFalse(board3x3v1.equals(board3x3v3));
+        Assert.assertFalse(board3x3v1.hashCode()== board3x3v3.hashCode());
+
+        Assert.assertFalse(board3x3v1.equals(board4x3));
+
+
+    }
 
     @Test
     public void testKingsAndRook() {
