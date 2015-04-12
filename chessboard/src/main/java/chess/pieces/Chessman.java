@@ -59,6 +59,10 @@ public abstract class Chessman {
         return State.BOOKED;
     }
 
+    public Cell getPlace() {
+        return place;
+    }
+
     public void rid(Chessboard ch) {
         ch.getFree().addAll(booked);
         localPlaces.clear();

@@ -31,6 +31,7 @@ public class TestChessboard {
         player.printResult();
         System.out.println("-------------------------------------");
         Assert.assertTrue(player.getOptionsCount() == 8);
+        Assert.assertTrue(player.getResultsCount() == 4);
     }
 
 }
