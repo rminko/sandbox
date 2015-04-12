@@ -17,3 +17,4 @@ bin
 
 # IntelliJ IDEA
 *.i??
+.idea
