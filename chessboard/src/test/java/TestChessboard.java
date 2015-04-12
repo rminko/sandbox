@@ -39,7 +39,7 @@ public class TestChessboard {
         System.out.println("Test two Kings and Rook on 3x3 board");
         Player player = new Player();
         Chessboard board = new Chessboard(3, 3);
-        List<Chessman> pieces = new ArrayList<Chessman>(8);
+        List<Chessman> pieces = new ArrayList<>(3);
         pieces.add(new King());
         pieces.add(new King());
         pieces.add(new Rook());
@@ -61,7 +61,7 @@ public class TestChessboard {
         System.out.println("Test two Knights and Rooks on 4x4 board");
         Player player = new Player();
         Chessboard board = new Chessboard(4, 4);
-        List<Chessman> pieces = new ArrayList<Chessman>(8);
+        List<Chessman> pieces = new ArrayList<>(6);
         pieces.add(new Rook());
         pieces.add(new Rook());
         pieces.add(new Knight());
