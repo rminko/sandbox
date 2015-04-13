@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 import chess.State;
 
+@Deprecated
 public class ResultChessboard {
     private Integer height;
     private Integer width;

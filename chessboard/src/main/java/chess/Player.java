@@ -1,9 +1,6 @@
 package chess;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import chess.board.Chessboard;
 import chess.board.ResultChessboard;
@@ -14,13 +11,21 @@ public class Player {
     private Chessboard chessboard;
     private List<Chessman> pieces = new ArrayList<>();
     private int optionsCount = 0;
+
+    private boolean printResults = false;
+
+    // not used for updated algorithm
     private Set<ResultChessboard> results = new HashSet<>();
 
+    public void setPrintResults(boolean printResults) {
+        this.printResults = printResults;
+    }
 
     public int getOptionsCount() {
         return optionsCount;
     }
 
+    @Deprecated
     public int getResultsCount() {
         return results.size();
     }
@@ -31,6 +36,7 @@ public class Player {
 
     public void setPieces(List<Chessman> pieces) {
         this.pieces = pieces;
+        Collections.sort(pieces);
     }
 
     public void process(Integer level) {
@@ -38,9 +44,13 @@ public class Player {
         while (piece.sit(chessboard)) {
             if (pieces.size() == level + 1) {
                 optionsCount++;
-                results.add(generateBoardResult());
-
+                if(printResults) {
+                    chessboard.print();
+                }
             } else {
+                if (piece.getType() == pieces.get(level+1).getType()) {
+                    pieces.get(level+1).getLocalPlaces().addAll(piece.getLocalPlaces());
+                }
                 process(level + 1);
             }
         }
@@ -53,6 +63,7 @@ public class Player {
         process(startLevel);
     }
 
+    @Deprecated
     public ResultChessboard generateBoardResult() {
         ResultChessboard result = new ResultChessboard(chessboard.getHeight(), chessboard.getWidth());
         for (Chessman piece : pieces) {
@@ -63,8 +74,6 @@ public class Player {
 
     public void printResult() {
         System.out.println();
-        System.out.println("Finally found all results: " + optionsCount + " results");
-        System.out.println("Finally found distinct     : " + results.size() + " results");
-
+        System.out.println("Finally found: " + optionsCount + " results");
     }
 }

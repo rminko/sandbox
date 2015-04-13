@@ -1,4 +1,5 @@
 package chess.board;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,9 +21,6 @@ public class Chessboard {
 
     // Set with cells, which currently is not occupied or threatened by any chessman
     private Set<Cell> free = new HashSet<Cell>();
-
-    // Places set will contains set of cells occupied by chessmen
-    private Set<Cell> places = new HashSet<Cell>();
 
     public Chessboard(Integer x, Integer y) {
         height = x;
@@ -50,10 +48,6 @@ public class Chessboard {
         return free;
     }
 
-    public Set<Cell> getPlaces() {
-        return places;
-    }
-
     public Cell[][] getCells() {
         return cells;
     }
@@ -63,7 +57,24 @@ public class Chessboard {
     }
 
     public void print() {
-        return;
-    }
 
+        for (int j = 0; j < width; j++) {
+            System.out.print("--");
+        }
+        System.out.println();
+
+        for (int i = 0; i < height; i++) {
+            System.out.print("|");
+            for (int j = 0; j < width; j++) {
+                System.out.print(cells[i][j].getState().getSymbol());
+            }
+            System.out.print("|");
+            System.out.println();
+        }
+
+        for (int j = 0; j < width; j++) {
+            System.out.print("--");
+        }
+        System.out.println();
+    }
 }

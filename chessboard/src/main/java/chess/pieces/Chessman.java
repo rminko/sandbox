@@ -7,10 +7,14 @@ import chess.State;
 import chess.board.Cell;
 import chess.board.Chessboard;
 
-public abstract class Chessman {
+public abstract class Chessman implements Comparable<Chessman>{
 
     protected Set<Cell> booked = new HashSet<>();
     protected Cell place = null;
+
+    public Set<Cell> getLocalPlaces() {
+        return localPlaces;
+    }
 
     // Set off cells which were already taken by this piece
     // should be cleared when chess piece is leaving the board
@@ -20,7 +24,6 @@ public abstract class Chessman {
         while (true) {
             if (place != null) {
                 place.setState(State.NONE);
-                board.getPlaces().remove(place);
                 board.getFree().addAll(booked);
                 booked.clear();
             }
@@ -32,7 +35,6 @@ public abstract class Chessman {
 
             if (fillBooked(place, board)) {
                 place.setState(getType());
-                board.getPlaces().add(place);
                 board.getFree().removeAll(booked);
                 return true;
             }
@@ -51,12 +53,13 @@ public abstract class Chessman {
 
     protected boolean fillBooked(Cell targetCell, Chessboard chessboard) {
         booked.retainAll(chessboard.getFree());
+
         return true;
     }
 
 
     public State getType() {
-        return State.BOOKED;
+        return State.NONE;
     }
 
     public Cell getPlace() {
@@ -69,9 +72,11 @@ public abstract class Chessman {
         booked.clear();
         if (place != null) {
             place.setState(State.NONE);
-            ch.getPlaces().remove(place);
             place = null;
         }
     }
 
+    public int compareTo(Chessman another) {
+        return getType().compareTo(another.getType());
+    }
 }

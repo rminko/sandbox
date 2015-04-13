@@ -1,15 +1,16 @@
 package chess;
 
 public enum State {
-    KING('K'),
     QUEEN('Q'),
-    BISHOP('B'),
     ROOK('R'),
+    BISHOP('B'),
+    KING('K'),
     KNIGHT('N'),
-    NONE(' '),
-    BOOKED('_');
+    NONE('0'),
+    BOOKED('x');
 
     private Character symbol;
+    private int priority;
 
     State(Character symbol) {
         this.symbol = symbol;
