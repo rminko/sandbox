@@ -81,7 +81,7 @@ public class TestChessboard {
         System.out.println("-------------------------------------");
         System.out.println("Target test on 7x7 board");
         long start = System.currentTimeMillis();
-        Chessboard board = new Chessboard(6, 6);
+        Chessboard board = new Chessboard(7, 7);
         Player player = new Player();
         List<Chessman> pieces = new ArrayList<>(7);
         pieces.add(new Queen());
@@ -98,7 +98,7 @@ public class TestChessboard {
         System.out.println("It took " + ((end - start)) / 1000d + " seconds to find results");
         player.printResult();
         System.out.println("-------------------------------------");
-//        Assert.assertTrue(player.getOptionsCount() == 3063828);
+        Assert.assertTrue(player.getOptionsCount() == 3063828);
 
     }
 
