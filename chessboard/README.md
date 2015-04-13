@@ -11,7 +11,7 @@ Provide answer the total number of unique configurations for a 7×7 board with 2
 
 Run by maven
 -------------------------------------
-1. To start user dialog and choose you oun configuration: 
+1. To start user dialog and choose your own configuration: 
 $ mvn clean install exec:java -DskipTests=true
 2. To see results for targen task:
 $ mvn clean test
