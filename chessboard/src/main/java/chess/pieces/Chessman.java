@@ -41,8 +41,8 @@ public abstract class Chessman implements Comparable<Chessman>{
         }
     }
 
-    public Cell chooseCell(Chessboard chessboard) {
-        for (Cell targetCell : chessboard.getFree()) {
+    public Cell chooseCell(Chessboard board) {
+        for (Cell targetCell : board.getFree()) {
             if (!localPlaces.contains(targetCell)) {
                 localPlaces.add(targetCell);
                 return targetCell;
@@ -51,8 +51,8 @@ public abstract class Chessman implements Comparable<Chessman>{
         return null;
     }
 
-    protected boolean fillBooked(Cell targetCell, Chessboard chessboard) {
-        booked.retainAll(chessboard.getFree());
+    protected boolean fillBooked(Cell targetCell, Chessboard board) {
+        booked.retainAll(board.getFree());
 
         return true;
     }
@@ -66,8 +66,8 @@ public abstract class Chessman implements Comparable<Chessman>{
         return place;
     }
 
-    public void rid(Chessboard ch) {
-        ch.getFree().addAll(booked);
+    public void rid(Chessboard board) {
+        board.getFree().addAll(booked);
         localPlaces.clear();
         booked.clear();
         if (place != null) {
