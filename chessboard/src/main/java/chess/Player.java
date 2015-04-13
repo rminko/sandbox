@@ -60,7 +60,9 @@ public class Player {
     public void findResults() {
         optionsCount = 0;
         int startLevel = 0;
-        process(startLevel);
+        if (pieces.size()>0) {
+            process(startLevel);
+        }
     }
 
     @Deprecated
