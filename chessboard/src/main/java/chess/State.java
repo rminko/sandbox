@@ -6,11 +6,9 @@ public enum State {
     BISHOP('B'),
     KING('K'),
     KNIGHT('N'),
-    NONE('0'),
-    BOOKED('x');
+    NONE('0');
 
     private Character symbol;
-    private int priority;
 
     State(Character symbol) {
         this.symbol = symbol;

@@ -10,8 +10,8 @@ import chess.pieces.*;
 public class Demo {
     public static void main(String args[]) {
         int count = 0;
-        int x = 0;
-        int y = 0;
+        int x;
+        int y;
 
         Player player = new Player();
         Chessboard chessboard;
@@ -48,19 +48,24 @@ public class Demo {
 
             switch (flag) {
                 case 1:
-                    pocket.add(new Queen()); count++;
+                    pocket.add(new Queen());
+                    count++;
                     break;
                 case 2:
-                    pocket.add(new Rook()); count++;
+                    pocket.add(new Rook());
+                    count++;
                     break;
                 case 3:
-                    pocket.add(new Bishop()); count++;
+                    pocket.add(new Bishop());
+                    count++;
                     break;
                 case 4:
-                    pocket.add(new King()); count++;
+                    pocket.add(new King());
+                    count++;
                     break;
                 case 5:
-                    pocket.add(new Knight()); count++;
+                    pocket.add(new Knight());
+                    count++;
                     break;
             }
         }

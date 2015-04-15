@@ -6,8 +6,9 @@ import java.util.Set;
 import chess.State;
 import chess.board.Cell;
 import chess.board.Chessboard;
+import com.sun.istack.internal.NotNull;
 
-public abstract class Chessman implements Comparable<Chessman>{
+public abstract class Chessman implements Comparable<Chessman> {
 
     protected Set<Cell> booked = new HashSet<>();
     protected Cell place = null;
@@ -15,6 +16,19 @@ public abstract class Chessman implements Comparable<Chessman>{
     // Set off cells which were already taken by this piece
     // should be cleared when chess piece is leaving the board
     protected Set<Cell> localPlaces = new HashSet<>();
+
+
+    public State getType() {
+        return State.NONE;
+    }
+
+    public Cell getPlace() {
+        return place;
+    }
+
+    public Set<Cell> getLocalPlaces() {
+        return localPlaces;
+    }
 
     public boolean sit(Chessboard board) {
         while (true) {
@@ -49,19 +63,6 @@ public abstract class Chessman implements Comparable<Chessman>{
     protected boolean fillBooked(Cell targetCell, Chessboard board) {
         booked.retainAll(board.getFree());
         return true;
-    }
-
-
-    public State getType() {
-        return State.NONE;
-    }
-
-    public Cell getPlace() {
-        return place;
-    }
-
-    public Set<Cell> getLocalPlaces() {
-        return localPlaces;
     }
 
     public void rid(Chessboard board) {

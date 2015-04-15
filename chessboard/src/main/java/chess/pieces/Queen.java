@@ -27,7 +27,7 @@ public class Queen extends Rook {
             }
         }
 
-      return super.fillBooked(targetCell, ch);
+        return super.fillBooked(targetCell, ch);
     }
 
 }

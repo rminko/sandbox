@@ -6,6 +6,25 @@ import java.util.Set;
 import chess.State;
 
 public class Chessboard {
+    private Integer height;
+    private Integer width;
+    private Cell[][] cells;
+    // Set with cells, which currently is not occupied or threatened by any chessman
+    private Set<Cell> free = new HashSet<>();
+
+    public Chessboard(Integer height, Integer width) {
+        this.height = height;
+        this.width = width;
+        cells = new Cell[height][width];
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                cells[i][j] = new Cell(State.NONE, i, j);
+                free.add(cells[i][j]);
+            }
+        }
+    }
+
     public Integer getHeight() {
         return height;
     }
@@ -14,46 +33,12 @@ public class Chessboard {
         return width;
     }
 
-    private Integer height;
-    private Integer width;
-
-    private Cell[][] cells;
-
-    // Set with cells, which currently is not occupied or threatened by any chessman
-    private Set<Cell> free = new HashSet<Cell>();
-
-    public Chessboard(Integer x, Integer y) {
-        height = x;
-        width = y;
-        cells = new Cell[x][y];
-
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                cells[i][j] = new Cell(State.NONE, i, j);
-                free.add(cells[i][j]);
-            }
-        }
-    }
-
-    public void setCell(Integer x, Integer y, State state) {
-        cells[x][y].setState(state);
-        if (cells[x][y].isFree()) {
-            free.add(cells[x][y]);
-        } else {
-            free.remove(cells[x][y]);
-        }
-    }
-
     public Set<Cell> getFree() {
         return free;
     }
 
     public Cell[][] getCells() {
         return cells;
-    }
-
-    public Boolean checkCellIsFree(Integer x, Integer y) {
-        return cells[x][y].isFree();
     }
 
     public void print() {

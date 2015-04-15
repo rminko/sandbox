@@ -44,12 +44,12 @@ public class Player {
         while (piece.sit(chessboard)) {
             if (pieces.size() == level + 1) {
                 optionsCount++;
-                if(printResults) {
+                if (printResults) {
                     chessboard.print();
                 }
             } else {
-                if (piece.getType() == pieces.get(level+1).getType()) {
-                    pieces.get(level+1).getLocalPlaces().addAll(piece.getLocalPlaces());
+                if (piece.getType() == pieces.get(level + 1).getType()) {
+                    pieces.get(level + 1).getLocalPlaces().addAll(piece.getLocalPlaces());
                 }
                 process(level + 1);
             }
@@ -60,7 +60,7 @@ public class Player {
     public void findResults() {
         optionsCount = 0;
         int startLevel = 0;
-        if (pieces.size()>0) {
+        if (pieces.size() > 0) {
             process(startLevel);
         }
     }
