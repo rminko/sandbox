@@ -1,4 +1,10 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import chess.Player;
@@ -102,5 +108,90 @@ public class TestChessboard {
 
     }
 
+    @Ignore
+    public void validateResultsTest() throws IOException {
 
+        System.out.println("-------------------------------------");
+        System.out.println("We are going to validate file with target task results");
+        BufferedReader reader = new BufferedReader(new FileReader("output.txt"));
+        String result;
+        Chessboard board;
+        List<Chessman> pieces;
+        Chessman piece;
+        char pieceChar;
+        Integer resultsCount = 0;
+
+        List<Chessman> testpieces = new ArrayList<>(7);
+        testpieces.add(new Queen());
+        testpieces.add(new Queen());
+        testpieces.add(new King());
+        testpieces.add(new King());
+        testpieces.add(new Bishop());
+        testpieces.add(new Bishop());
+        testpieces.add(new Knight());
+        Collections.sort(testpieces);
+
+        while ((result = reader.readLine()) != null) {
+
+            board = new Chessboard(7, 7);
+            pieces = new ArrayList<>(7);
+
+
+            for (int i = 0; i < result.length(); i++) {
+                if (result.charAt(i) != '-') {
+                    pieceChar = result.charAt(i);
+                    switch (pieceChar) {
+                        case 'Q': {
+                            board.getCells()[i % 7][i / 7].setState(State.QUEEN);
+                            piece = new Queen();
+                            piece.setPlace(board.getCells()[i % 7][i / 7]);
+                            pieces.add(piece);
+                            break;
+                        }
+                        case 'R':
+                            board.getCells()[i % 7][i / 7].setState(State.ROOK);
+                            piece = new Rook();
+                            piece.setPlace(board.getCells()[i % 7][i / 7]);
+                            pieces.add(piece);
+                            break;
+                        case 'B':
+                            board.getCells()[i % 7][i / 7].setState(State.BISHOP);
+                            piece = new Bishop();
+                            piece.setPlace(board.getCells()[i % 7][i / 7]);
+                            pieces.add(piece);
+                            break;
+                        case 'N':
+                            board.getCells()[i % 7][i / 7].setState(State.KNIGHT);
+                            piece = new Knight();
+                            piece.setPlace(board.getCells()[i % 7][i / 7]);
+                            pieces.add(piece);
+                            break;
+                        case 'K':
+                            board.getCells()[i % 7][i / 7].setState(State.KING);
+                            piece = new King();
+                            piece.setPlace(board.getCells()[i % 7][i / 7]);
+                            pieces.add(piece);
+                            break;
+                    }
+
+                }
+            }
+
+// first check - whether the number of pieces correct
+            Assert.assertTrue(pieces.size() == testpieces.size());
+
+// second check - we have really right chess pieces types
+            Collections.sort(pieces);
+            for (int i = 0; i < testpieces.size(); i++) {
+                Assert.assertTrue(testpieces.get(i).getType().equals(pieces.get(i).getType()));
+            }
+// final check - validate pieces positions
+            for (Chessman p : pieces) {
+                Assert.assertTrue(p.validatePosicion(board));
+            }
+            resultsCount++;
+        }
+        System.out.println("Finally validated: " + resultsCount);
+        System.out.println("-------------------------------------");
+    }
 }

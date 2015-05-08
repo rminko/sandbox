@@ -17,7 +17,7 @@ public class Bishop extends Chessman {
         for (int i = 0; i < ch.getHeight(); i++) {
             for (int j = 0; j < ch.getWidth(); j++) {
                 if (i + j == targetCell.getX() + targetCell.getY() || i - j == targetCell.getX() - targetCell.getY()) {
-                    if (cells[i][j].isFree()) {
+                    if (cells[i][j].isFree() ||  targetCell==cells[i][j]) {
                         booked.add(cells[i][j]);
                     } else {
                         booked.clear();

@@ -16,7 +16,7 @@ public class Rook extends Chessman {
         Cell[][] cells = ch.getCells();
 
         for (int i = 0; i < ch.getHeight(); i++) {
-            if (cells[i][targetCell.getY()].isFree()) {
+            if (cells[i][targetCell.getY()].isFree() ||  targetCell==cells[i][targetCell.getY()]) {
                 booked.add(cells[i][targetCell.getY()]);
             } else {
                 booked.clear();
@@ -24,7 +24,7 @@ public class Rook extends Chessman {
             }
         }
         for (int j = 0; j < ch.getWidth(); j++) {
-            if (cells[targetCell.getX()][j].isFree()) {
+            if (cells[targetCell.getX()][j].isFree() ||  targetCell==cells[targetCell.getX()][j]) {
                 booked.add(cells[targetCell.getX()][j]);
             } else {
                 booked.clear();

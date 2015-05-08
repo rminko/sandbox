@@ -17,7 +17,6 @@ public abstract class Chessman implements Comparable<Chessman> {
     // should be cleared when chess piece is leaving the board
     protected Set<Cell> localPlaces = new HashSet<>();
 
-
     public State getType() {
         return State.NONE;
     }
@@ -75,7 +74,15 @@ public abstract class Chessman implements Comparable<Chessman> {
         }
     }
 
+    public boolean validatePosicion( Chessboard board) {
+        return fillBooked(place, board);
+    }
+
     public int compareTo(Chessman another) {
         return getType().compareTo(another.getType());
+    }
+
+    public void setPlace(Cell place) {
+        this.place = place;
     }
 }
