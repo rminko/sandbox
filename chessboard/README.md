@@ -16,3 +16,14 @@ $ mvn clean install exec:java -DskipTests=true
 2. To see results for targen task:
 $ mvn clean test
 
+Target task validation
+=====================================
+Target task for board 7х7:
+Count of unique configuration for 2Q, 2B, 2K and N is 3063828
+1. Result configurations were stored in file you can find here
+http://www.ex.ua/90313529
+2. To validate uniqueness strings in txt file you can use corresponding unix command uniq. For example:
+$ sort output.txt | uniq -d > output1.txt
+3. For chess positions validation please consider following code:
+https://github.com/rminko/sandbox/blob/master/chessboard/src/test/java/TestChessboard.java#L180-L191
+from my test output file was successfully validated - 3063828 options
